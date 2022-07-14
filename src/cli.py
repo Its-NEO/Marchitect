@@ -10,7 +10,7 @@ import json
 class Cli:
     def __init__(self):
         # messages
-        with open('strings.json') as f:
+        with open(r'res\strings.json') as f:
             contents = json.load(f)
             self.error_codes, self.help_codes = contents['error_codes'], contents['help']
 
@@ -192,11 +192,7 @@ class Cli:
                 command_list.get(self.command.split()[0])()
 
 
+# entry point
 if __name__ == '__main__':
     c = Cli()
-
-    '''c.model.add_mod(c.model.search_call('pixelmon')[0])
-    c.model.add_mod(c.model.search_call('antique atlas')[0])
-    c.model.add_mod(c.model.search_call('appleskin')[0])'''
-
     c.run()

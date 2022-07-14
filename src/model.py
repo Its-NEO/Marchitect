@@ -4,6 +4,7 @@ import os.path as path
 import time
 from threading import Thread
 
+import key
 import requests
 
 
@@ -23,7 +24,7 @@ class Model:
         self._BASE_URL = 'https://api.curseforge.com'
         self._HEADERS = {
             'Accept': 'application/json',
-            'x-api-key': '$2a$10$j6qk.vRJ.SpjbWV598I69eovD/eJoKvGT.0BlY7l6karlNzrl5KY2'
+            'x-api-key': key.get_key()
         }
 
     def set_game_version(self, game_version):
