@@ -1,0 +1,74 @@
+{
+  "welcome": "",
+  "error_codes": {
+    "0": "",
+    "1": "\nYou haven't added any mods yet!\n\nType help to know more.\n",
+    "2": "\nThe command you have entered does not follow the allowed format!\n\nType help to know more.\n",
+    "3": "\nIndex out of range!\n\nType help to know more.\n",
+    "4": "\nYou haven't searched any mods yet!\n\nType help to know more.\n",
+    "5": "\nThe specified directory does not exist!\n\nType help to know more.\n",
+    "6": "\nThe specified file does not exist!\n\nType help to know more.\n"
+  },
+  "help": {
+    "set": {
+      "header": "",
+      "format": "",
+      "example": "",
+      "desc": ""
+    },
+    "search": {
+      "header": "",
+      "format": "",
+      "example": "",
+      "desc": ""
+    },
+    "add": {
+      "header": "",
+      "format": "",
+      "example": "",
+      "desc": ""
+    },
+    "list": {
+      "header": "",
+      "format": "",
+      "example": "",
+      "desc": ""
+    },
+    "remove": {
+      "header": "",
+      "format": "",
+      "example": "",
+      "desc": ""
+    },
+    "export": {
+      "header": "",
+      "format": "",
+      "example": "",
+      "desc": ""
+    },
+    "download": {
+      "header": "",
+      "format": "",
+      "example": "",
+      "desc": ""
+    },
+    "clear": {
+      "header": "",
+      "format": "",
+      "example": "",
+      "desc": ""
+    },
+    "state": {
+      "header": "",
+      "format": "",
+      "example": "",
+      "desc": ""
+    },
+    "exit": {
+      "header": "",
+      "format": "",
+      "example": "",
+      "desc": ""
+    }
+  }
+}
