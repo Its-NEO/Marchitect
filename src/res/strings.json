@@ -1,5 +1,5 @@
 {
-  "welcome": "",
+  "welcome": "\nWelcome to Marchitect!\n\nWe help you create Minecraft mod-packs with ease.\nUse \"help\" to see all the available commands and their options.\n\nSome defaults: mod_loader = forge, game_version = 1.12.2\n",
   "error_codes": {
     "0": "",
     "1": "\nYou haven't added any mods yet!\n\nType help to know more.\n",
@@ -11,64 +11,70 @@
   },
   "help": {
     "set": {
-      "header": "",
-      "format": "",
-      "example": "",
-      "desc": ""
+      "header": "SET",
+      "format": "set [options] [arguments]",
+      "example": "set mod_loader fabric",
+      "desc": "Sets the mod-pack options.\nAvailable options = mod_loader(forge, fabric), game_version.\nNote: Snapshots as game version not supported."
     },
     "search": {
-      "header": "",
-      "format": "",
-      "example": "",
-      "desc": ""
+      "header": "SEARCH",
+      "format": "search [mod name]",
+      "example": "search antique atlas",
+      "desc": "Searches a mod with its name and views all the available options."
     },
     "add": {
-      "header": "",
-      "format": "",
-      "example": "",
-      "desc": ""
+      "header": "ADD",
+      "format": "add [index]",
+      "example": "add 2",
+      "desc": "Adds the mod to your mod list from your searched mods by its index."
     },
     "list": {
-      "header": "",
-      "format": "",
-      "example": "",
-      "desc": ""
+      "header": "LIST",
+      "format": "list",
+      "example": "list",
+      "desc": "Shows the list of added mods."
     },
     "remove": {
-      "header": "",
-      "format": "",
-      "example": "",
-      "desc": ""
+      "header": "REMOVE",
+      "format": "remove [index]",
+      "example": "remove 1",
+      "desc": "Removes a mod from your mod list by its index."
     },
     "export": {
-      "header": "",
-      "format": "",
-      "example": "",
-      "desc": ""
+      "header": "EXPORT",
+      "format": "export [output path]",
+      "example": "export C:/Users/user/Desktop/file.txt",
+      "desc": "Exports your mod-pack to a file that represents your mod-pack.\nThis file can be shared to anyone you want.\nNote: The filename must end with a .txt"
     },
     "download": {
-      "header": "",
-      "format": "",
-      "example": "",
-      "desc": ""
+      "header": "DOWNLOAD",
+      "format": "download [source file] -o [output directory]",
+      "example": "download C:/Users/user/Desktop/file.txt -o C:/Users/user/Desktop/mod folder",
+      "desc": "Download all the mods from the mod file and stores it in the folder specified.\nNote: You should have a stable internet connection or this might fail."
     },
     "clear": {
-      "header": "",
-      "format": "",
-      "example": "",
-      "desc": ""
+      "header": "CLEAR",
+      "format": "clear",
+      "example": "clear",
+      "desc": "Clears the screen."
     },
     "state": {
-      "header": "",
-      "format": "",
-      "example": "",
-      "desc": ""
+      "header": "STATE",
+      "format": "state",
+      "example": "state",
+      "desc": "Displays the state of your settings. Information displayed includes mod_loader and game_version."
     },
     "exit": {
-      "header": "",
-      "format": "",
-      "example": "",
-      "desc": ""
+      "header": "EXIT",
+      "format": "exit",
+      "example": "exit",
+      "desc": "Exits the program."
+    },
+    "reset": {
+      "header": "RESET",
+      "format": "reset",
+      "example": "reset",
+      "desc": "Resets the program to its defaults."
     }
   }
 }
