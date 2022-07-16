@@ -75,6 +75,18 @@
       "format": "reset",
       "example": "reset",
       "desc": "Resets the program to its defaults."
+    },
+    "load": {
+      "header": "LOAD",
+      "format": "load [source file]",
+      "example": "load C:/Users/user/Desktop/file.txt",
+      "desc": "Loads the contents of a mod-pack file into the current session."
+    },
+    "depchk": {
+      "header": "DEPCHK",
+      "format": "depchk",
+      "example": "depchk",
+      "desc": "Checks and adds the dependency of all the mods in the current mod list."
     }
   }
 }

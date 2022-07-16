@@ -12,7 +12,8 @@ class Cli:
         # messages
         with open(r'res\strings.json') as f:
             contents = json.load(f)
-            self.welcome, self.error_codes, self.help_codes = contents['welcome'], contents['error_codes'], contents['help']
+            self.welcome, self.error_codes, self.help_codes = contents['welcome'], contents['error_codes'], contents[
+                'help']
 
         # misc
         self.model = model.Model()
@@ -194,7 +195,7 @@ class Cli:
             print(desc, end='\n\n')
             return
 
-        res = re.search(r'^add (\d)$', self.command)
+        res = re.search(r'^add (\d+)$', self.command)
         if res is None:
             print(self.error_codes['2'])
             return
@@ -225,7 +226,7 @@ class Cli:
             print(desc, end='\n\n')
             return
 
-        res = re.search(r'^remove (\d)$', self.command)
+        res = re.search(r'^remove (\d+)$', self.command)
 
         if res is None:
             print(self.error_codes['2'])
@@ -302,6 +303,51 @@ class Cli:
         self.model.download_mods(res.group(1), res.group(2))
         print(f'\nThe mods has been downloaded successfully and saved at {res.group(2)}!\n')
 
+    def load(self):
+        if self.command == 'load help':
+            header = self.help_codes['load']['header']
+            format_ = self.help_codes['load']['format']
+            example = self.help_codes['load']['example']
+            desc = self.help_codes['load']['desc']
+
+            print(header)
+            print('Format:', format_)
+            print('Example:', example)
+            print(desc, end='\n\n')
+            return
+
+        res = re.search(r'^load "?([A-Z]:[\\|/](?:[\w_\-. ]+[\\|/])*[\w_\-. ]+\.txt)"?$', self.command)
+        if res is None:
+            print(self.error_codes['2'])
+            return
+
+        if not os.path.exists(res.group(1)):
+            print(self.error_codes['6'])
+            return
+
+        path = res.group(1)
+        self.model.load(path)
+
+    def check_deps(self):
+        if self.command == 'depchk help':
+            header = self.help_codes['depchk']['header']
+            format_ = self.help_codes['depchk']['format']
+            example = self.help_codes['depchk']['example']
+            desc = self.help_codes['depchk']['desc']
+
+            print(header)
+            print('Format:', format_)
+            print('Example:', example)
+            print(desc, end='\n\n')
+            return
+
+        if not self.model.mods:
+            print(self.error_codes['1'])
+            return
+
+        self.model.check_deps()
+        print('\nAll dependencies resolved!\n')
+
     def run(self):
         # noinspection PyUnresolvedReferences
         command_list = {
@@ -316,7 +362,9 @@ class Cli:
             'add': self.add,
             'remove': self.remove,
             'export': self.export,
-            'download': self.download
+            'download': self.download,
+            'load': self.load,
+            'depchk': self.check_deps
         }
 
         print(self.welcome)

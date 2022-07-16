@@ -1,13 +1,12 @@
 import ast
 import itertools
-import os.path as path
-from textwrap import indent
-import time
 import json
+import os.path as path
+import time
 from threading import Thread
 
-import key
 import requests
+import key
 
 
 class Model:
@@ -142,6 +141,8 @@ class Model:
                 file.write(str(elem) + '\n')
                 file.flush()
 
+        self.mods = []
+
     def download_mods(self, src_file, out_dir):
         """
         Download all the mods from a Marchitect file
@@ -203,16 +204,49 @@ class Model:
 
     def load(self, src_path):
         self.mods = []
-        
+
         with open(src_path) as file:
             content = file.readlines()
 
         self.mods = content
 
+    def check_deps(self):
+        count = 0
+        flag = True
+        while flag:
+            for mod in self.mods:
+                if mod['deps']:
+                    for dep in mod['deps']:
+                        dep_data = requests.get(self._BASE_URL + f'/v1/mods/{dep["modId"]}', headers=self._HEADERS)
 
-if __name__ == "__main__":
-    model = Model()
+                        if dep_data == b'':
+                            continue
 
-    data = model.search_call('antique atlas')
+                        dep_data = json.loads(dep_data.content.decode())['data']
 
-    print(json.dumps(str(data), indent=3))
+                        # manufacturing the result
+                        result = {
+                            'mod_id': dep_data['id'],
+                            'name': dep_data['name'],
+                            'summary': dep_data['summary'],
+                            'authors': [author['name'] for author in dep_data['authors']],
+                            'downloads': dep_data['downloadCount'],
+                            'categories': [c['name'] for c in dep_data['categories']],
+                            'deps': dep_data['latestFiles'][0]['dependencies'],
+                            'files': [{
+                                'file_name': f['filename'],
+                                'game_version': f['gameVersion'],
+                                'file_id': f['fileId'],
+                                'mod_loader': f['modLoader']
+                            } for f in dep_data['latestFilesIndexes'] if self._game_version in f['gameVersion']],
+                            'usable': True if dep_data['latestFilesIndexes'][0]['filename'].endswith('jar') else False
+                        }
+
+                        if result not in self.mods:
+                            self.add_mod(result)
+                            count += 1
+
+            if count == 0:
+                flag = False
+
+            count = 0
