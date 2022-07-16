@@ -1,7 +1,9 @@
 import ast
 import itertools
 import os.path as path
+from textwrap import indent
 import time
+import json
 from threading import Thread
 
 import key
@@ -97,6 +99,7 @@ class Model:
             'authors': [author['name'] for author in d['authors']],
             'downloads': d['downloadCount'],
             'categories': [c['name'] for c in d['categories']],
+            'deps': d['latestFiles'][0]['dependencies'],
             'files': [{
                 'file_name': f['filename'],
                 'game_version': f['gameVersion'],
@@ -197,3 +200,19 @@ class Model:
             is_done = True
             animation_thread.join()
             print(f'{mod["name"]} - Done!')
+
+    def load(self, src_path):
+        self.mods = []
+        
+        with open(src_path) as file:
+            content = file.readlines()
+
+        self.mods = content
+
+
+if __name__ == "__main__":
+    model = Model()
+
+    data = model.search_call('antique atlas')
+
+    print(json.dumps(str(data), indent=3))
