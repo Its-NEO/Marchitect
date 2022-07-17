@@ -23,27 +23,22 @@ class Cli:
     def help(self):
         print("MARCHITECT\n")
         for h in self.help_codes:
-            header = self.help_codes[h]['header']
-            format_ = self.help_codes[h]['format']
-            example = self.help_codes[h]['example']
-            desc = self.help_codes[h]['desc']
+            self.command_help(h)
 
-            print(header)
-            print('Format:', format_)
-            print('Example:', example)
-            print(desc, end='\n\n')
+    def command_help(self, command):
+        header = self.help_codes[command]['header']
+        format_ = self.help_codes[command]['format']
+        example = self.help_codes[command]['example']
+        desc = self.help_codes[command]['desc']
+
+        print(header)
+        print('Format:', format_)
+        print('Example:', example)
+        print(desc, end='\n\n')
 
     def list(self):
         if self.command == 'list help':
-            header = self.help_codes['list']['header']
-            format_ = self.help_codes['list']['format']
-            example = self.help_codes['list']['example']
-            desc = self.help_codes['list']['desc']
-
-            print(header)
-            print('Format:', format_)
-            print('Example:', example)
-            print(desc, end='\n\n')
+            self.command_help('list')
             return
 
         if not self.model.mods:
@@ -60,30 +55,14 @@ class Cli:
 
     def clear(self):
         if self.command == 'clear help':
-            header = self.help_codes['clear']['header']
-            format_ = self.help_codes['clear']['format']
-            example = self.help_codes['clear']['example']
-            desc = self.help_codes['clear']['desc']
-
-            print(header)
-            print('Format:', format_)
-            print('Example:', example)
-            print(desc, end='\n\n')
+            self.command_help('clear')
             return
 
         os.system('cls')
 
     def state(self):
         if self.command == 'state help':
-            header = self.help_codes['state']['header']
-            format_ = self.help_codes['state']['format']
-            example = self.help_codes['state']['example']
-            desc = self.help_codes['state']['desc']
-
-            print(header)
-            print('Format:', format_)
-            print('Example:', example)
-            print(desc, end='\n\n')
+            self.command_help('state')
             return
 
         mod_loader, game_version = self.model.get_state()
@@ -92,30 +71,14 @@ class Cli:
 
     def exit(self):
         if self.command == 'exit help':
-            header = self.help_codes['exit']['header']
-            format_ = self.help_codes['exit']['format']
-            example = self.help_codes['exit']['example']
-            desc = self.help_codes['exit']['desc']
-
-            print(header)
-            print('Format:', format_)
-            print('Example:', example)
-            print(desc, end='\n\n')
+            self.command_help('exit')
             return
 
         sys.exit()
 
     def reset(self):
         if self.command == 'reset help':
-            header = self.help_codes['reset']['header']
-            format_ = self.help_codes['reset']['format']
-            example = self.help_codes['reset']['example']
-            desc = self.help_codes['reset']['desc']
-
-            print(header)
-            print('Format:', format_)
-            print('Example:', example)
-            print(desc, end='\n\n')
+            self.command_help('reset')
             return
 
         self.model.reset()
@@ -123,15 +86,7 @@ class Cli:
 
     def set(self):
         if self.command == 'set help':
-            header = self.help_codes['set']['header']
-            format_ = self.help_codes['set']['format']
-            example = self.help_codes['set']['example']
-            desc = self.help_codes['set']['desc']
-
-            print(header)
-            print('Format:', format_)
-            print('Example:', example)
-            print(desc, end='\n\n')
+            self.command_help('set')
             return
 
         res = re.search(r'^set (mod_loader (?:forge|fabric)|game_version [\d.]+)$', self.command)
@@ -150,15 +105,7 @@ class Cli:
 
     def search(self):
         if self.command == 'search help':
-            header = self.help_codes['search']['header']
-            format_ = self.help_codes['search']['format']
-            example = self.help_codes['search']['example']
-            desc = self.help_codes['search']['desc']
-
-            print(header)
-            print('Format:', format_)
-            print('Example:', example)
-            print(desc, end='\n\n')
+            self.command_help('search')
             return
 
         res = re.search(r"^search ([\w ',.]+$)", self.command)
@@ -184,15 +131,7 @@ class Cli:
 
     def add(self):
         if self.command == 'add help':
-            header = self.help_codes['add']['header']
-            format_ = self.help_codes['add']['format']
-            example = self.help_codes['add']['example']
-            desc = self.help_codes['add']['desc']
-
-            print(header)
-            print('Format:', format_)
-            print('Example:', example)
-            print(desc, end='\n\n')
+            self.command_help('add')
             return
 
         res = re.search(r'^add (\d+)$', self.command)
@@ -215,15 +154,7 @@ class Cli:
 
     def remove(self):
         if self.command == 'remove help':
-            header = self.help_codes['remove']['header']
-            format_ = self.help_codes['remove']['format']
-            example = self.help_codes['remove']['example']
-            desc = self.help_codes['remove']['desc']
-
-            print(header)
-            print('Format:', format_)
-            print('Example:', example)
-            print(desc, end='\n\n')
+            self.command_help('remove')
             return
 
         res = re.search(r'^remove (\d+)$', self.command)
@@ -247,15 +178,7 @@ class Cli:
 
     def export(self):
         if self.command == 'export help':
-            header = self.help_codes['export']['header']
-            format_ = self.help_codes['export']['format']
-            example = self.help_codes['export']['example']
-            desc = self.help_codes['export']['desc']
-
-            print(header)
-            print('Format:', format_)
-            print('Example:', example)
-            print(desc, end='\n\n')
+            self.command_help('export')
             return
 
         res = re.search(r'^export "?([A-Z]:[\\|/](?:[\w_\-. ]+[\\|/])*)([\w_\-. ]+\.txt)"?$', self.command)
@@ -274,15 +197,7 @@ class Cli:
 
     def download(self):
         if self.command == 'download help':
-            header = self.help_codes['download']['header']
-            format_ = self.help_codes['download']['format']
-            example = self.help_codes['download']['example']
-            desc = self.help_codes['download']['desc']
-
-            print(header)
-            print('Format:', format_)
-            print('Example:', example)
-            print(desc, end='\n\n')
+            self.command_help('download')
             return
 
         res = re.search(r'^download "?([A-Z]:[\\|/](?:[\w_\-. ]+[\\|/])*[\w_\-. ]+\.txt)"? -o "?([A-Z]:[\\|/](?:['
@@ -305,15 +220,7 @@ class Cli:
 
     def load(self):
         if self.command == 'load help':
-            header = self.help_codes['load']['header']
-            format_ = self.help_codes['load']['format']
-            example = self.help_codes['load']['example']
-            desc = self.help_codes['load']['desc']
-
-            print(header)
-            print('Format:', format_)
-            print('Example:', example)
-            print(desc, end='\n\n')
+            self.command_help('load')
             return
 
         res = re.search(r'^load "?([A-Z]:[\\|/](?:[\w_\-. ]+[\\|/])*[\w_\-. ]+\.txt)"?$', self.command)
@@ -330,15 +237,7 @@ class Cli:
 
     def check_deps(self):
         if self.command == 'depchk help':
-            header = self.help_codes['depchk']['header']
-            format_ = self.help_codes['depchk']['format']
-            example = self.help_codes['depchk']['example']
-            desc = self.help_codes['depchk']['desc']
-
-            print(header)
-            print('Format:', format_)
-            print('Example:', example)
-            print(desc, end='\n\n')
+            self.command_help('depchk')
             return
 
         if not self.model.mods:

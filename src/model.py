@@ -208,7 +208,8 @@ class Model:
         with open(src_path) as file:
             content = file.readlines()
 
-        self.mods = content
+        for mod in content:
+            self.mods.append(ast.literal_eval(mod.strip()))
 
     def check_deps(self):
         count = 0
