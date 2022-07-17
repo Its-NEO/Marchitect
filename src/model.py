@@ -1,7 +1,9 @@
 import ast
 import itertools
 import json
+import os.path
 import os.path as path
+import shutil
 import time
 from threading import Thread
 
@@ -183,6 +185,14 @@ class Model:
                 print(f'{mod["name"]} - Skipped')
                 continue
 
+            # checking if file exists in cache and adding it from cache
+            if path.exists(path.join('cache', filename)):
+                shutil.copyfile(path.join('cache', filename), path.join(out_dir, filename))
+                is_done = True
+                animation_thread.join()
+                print(f'{mod["name"]} - DONE')
+                continue
+
             # decoding file url after getting it
             file_url = requests.get(self._BASE_URL + f'/v1/mods/{mod_id}/files/{file_id}/download-url',
                                     headers=self._HEADERS)
@@ -197,6 +207,9 @@ class Model:
             with open(path.join(out_dir, filename), 'wb') as file:
                 for chunk in r.iter_content(1024):
                     file.write(chunk)
+
+            # copying file to the cache
+            shutil.copyfile(path.join(out_dir, filename), path.join('cache', filename))
 
             is_done = True
             animation_thread.join()

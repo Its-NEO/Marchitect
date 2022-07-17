@@ -74,6 +74,13 @@ class Cli:
             self.command_help('exit')
             return
 
+        print('Cleaning the cache...')
+
+        for file in os.listdir('cache'):
+            os.remove(os.path.join('cache', file))
+
+        print('Cache cleared!')
+
         sys.exit()
 
     def reset(self):
