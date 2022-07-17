@@ -1,13 +1,13 @@
 import ast
 import itertools
 import json
-import os.path
 import os.path as path
 import shutil
 import time
 from threading import Thread
 
 import requests
+
 import key
 
 

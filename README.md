@@ -59,3 +59,18 @@ Send this file to anyone and they can download your mod-pack using:
 ```commandline
 download [file path] -o [output path]
 ```
+
+## IMPORTANT
+**Note:**
+> To use this mod-pack developer, you must create a python file "src/key.py" and create a function *get_key()* 
+> inside it to return the api key of curseforge developers.
+
+For your convenience:
+```python
+# This code must be inside src/key.py
+def get_key():
+    return "CURSEFORGE API KEY"
+```
+
+>Where to get the developer key?  
+>Here - [Curseforge](https://console.curseforge.com/#/login)
